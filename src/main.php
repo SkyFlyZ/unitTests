@@ -7,9 +7,10 @@ declare(strict_types=1);
  * @throws Exception for empty input
  */
 
+// получаем противоположную скобку для последнего элемента массива
 function getPairOfParenthesis(string $char): string
 {
-	$array = [')'=> '(', ']'=> '[', '>'=> '<'];
+	$array = [')' => '(', ']' => '[', '>' => '<'];
 
 	return $array[$char];
 }
@@ -21,20 +22,23 @@ function isParenthesisValid(string $input = ''): bool
 		throw new Exception();
 	}
 
-	$ParenthesisArray = [];
+	$parenthesisArray = [];
 	foreach (str_split($input) as $char)
 	{
 		if ($char === '(' || $char === '[' || $char === '<')
 		{
-			$ParenthesisArray[] = $char;
+			$parenthesisArray[] = $char;
 			continue;
 		}
 
 		if ($char === ')' || $char === ']' || $char === '>')
 		{
-			if (!empty($ParenthesisArray) && $ParenthesisArray[count($ParenthesisArray) - 1] === getPairOfParenthesis($char))
+			if (
+				!empty($parenthesisArray)
+				&& $parenthesisArray[count($parenthesisArray) - 1] === getPairOfParenthesis($char)
+			)
 			{
-				array_pop($ParenthesisArray);
+				array_pop($parenthesisArray);
 
 				continue;
 			}
@@ -43,7 +47,7 @@ function isParenthesisValid(string $input = ''): bool
 		}
 
 	}
-	if (!empty($ParenthesisArray))
+	if (!empty($parenthesisArray))
 	{
 		return false;
 	}

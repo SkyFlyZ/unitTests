@@ -15,7 +15,7 @@ class MainTest extends TestCase
 	 * @return void
 	 */
 
-	public function testFunctionTrueCorrectlyWorks(bool $expected , string $assertion): void
+	public function testFunctionParenthesesCorrectlyWorks(bool $expected, string $assertion): void
 	{
 		$this->assertEquals($expected, isParenthesisValid($assertion));
 	}
